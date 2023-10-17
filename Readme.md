@@ -1,1 +1,1 @@
-# Building blog using Nodejs, Express and MongoDB.
+# Building Blog using Nodejs, Express and MongoDB
