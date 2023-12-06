@@ -110,7 +110,10 @@ This line specifies EJS as the templating engine for generating dynamic content.
 app.set('view engine', 'ejs');
 ```
 
-### main.ejs
+### Folder Structure of views
+![Folder structure](./public/img/readme.md%20-%20Building_Blog%20-%20Visual%20Studio%20Code%2006-12-2023%2015_02_11.png "Folder structure")
+
+`main.ejs`
 
 ```
 <!DOCTYPE html>
@@ -144,3 +147,60 @@ app.set('view engine', 'ejs');
 * The include directive is used to include other templates into the main template. For example, the line <%- include('../partials/header.ejs') %> includes the header.ejs template into the <head> of the main template.
 
 * The body block is where you will insert the specific content of each page. For example, if you have a route for the /about page, you would create an about.ejs template that would be inserted into the body block of the main template.
+
+
+`index.js`
+
+```
+<div class="author">
+    <h1 class="author_heading">Hello, I'm Ankush</h1>
+    <p class="author_para">Web developer and Life long learner</p>
+</div>
+
+<img src="../img/hero-image.webp" alt="person is looking outside through window" class="hero-image" height="528" width="981">
+
+<section class="articles">
+    <h2 class="articles_heading">Latest Posts</h2>
+
+    <ul class="article_ul">
+        <li>
+            <a href="#">
+                <span>Post Title</span>
+                <span class="article-list_date">Date</span>
+            </a>
+        </li>
+    </ul>
+
+    <a href="#" class="pagination">&lt; View older posts</a>
+</section>
+```
+
+`header.ejs`
+
+```
+<header>
+    <a href="/" class="header_logo">NodeJs</a>
+
+    <nav class="header_nav">
+        <ul>
+            <li><a href="/" class="">home</a></li>
+            <li><a href="/about" class="">about</a></li>
+            <li><a href="/contact" class="">contact</a></li>
+        </ul>
+    </nav>
+    <div class="header_btn">
+        <button class="searchBtn">
+            Search
+            <svg width="17" height="17" class="" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><title>Search Icon</title><path d="M10.5 18C14.6421 18 18 14.6421 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18Z" stroke="#717478" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 16L21 21" stroke="#717478" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+    </div>
+</header>
+```
+
+`footer.ejs`
+
+```
+<footer class="footer">
+    &copy; <%- new Date().getFullYear(); %> Built with Nodejs & MongoDB
+</footer>
+```
