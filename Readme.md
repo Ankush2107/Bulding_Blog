@@ -111,9 +111,9 @@ app.set('view engine', 'ejs');
 ```
 
 ### Folder Structure of views
-![Folder structure](./img/readme.md%20-%20Building_Blog%20-%20Visual%20Studio%20Code%2006-12-2023%2015_02_11.png "Folder structure")
+[![Folder structure](./public/img/readme.md%20-%20Building_Blog%20-%20Visual%20Studio%20Code%2006-12-2023%2015_02_11.png)]
 
-`main.ejs`
+### main.ejs
 
 ```
 <!DOCTYPE html>
@@ -149,7 +149,7 @@ app.set('view engine', 'ejs');
 * The body block is where you will insert the specific content of each page. For example, if you have a route for the /about page, you would create an about.ejs template that would be inserted into the body block of the main template.
 
 
-`index.js`
+### index.js
 
 ```
 <div class="author">
@@ -175,7 +175,7 @@ app.set('view engine', 'ejs');
 </section>
 ```
 
-`header.ejs`
+### header.ejs
 
 ```
 <header>
@@ -197,7 +197,7 @@ app.set('view engine', 'ejs');
 </header>
 ```
 
-`footer.ejs`
+### footer.ejs
 
 ```
 <footer class="footer">
