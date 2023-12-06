@@ -111,7 +111,7 @@ app.set('view engine', 'ejs');
 ```
 
 ### Folder Structure of views
-![Folder structure](./public/img/readme.md%20-%20Building_Blog%20-%20Visual%20Studio%20Code%2006-12-2023%2015_02_11.png "Folder structure")
+![Folder structure](./img/readme.md%20-%20Building_Blog%20-%20Visual%20Studio%20Code%2006-12-2023%2015_02_11.png "Folder structure")
 
 `main.ejs`
 
