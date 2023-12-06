@@ -110,3 +110,37 @@ This line specifies EJS as the templating engine for generating dynamic content.
 app.set('view engine', 'ejs');
 ```
 
+### main.ejs
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.title %></title>
+    <meta name="description" content="<%= locals.description %>">
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" defer src="/js/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <%- include('../partials/header.ejs') %>
+            <main class="main">
+                <%- body %>
+            </main>
+        <%- include('../partials/footer.ejs') %>
+    </div>
+</body>
+</html>
+```
+
+#### Explaination
+
+* This is the main HTML template for your web application. It defines the basic structure of the page, including the <html>, <head>, and <body> tags. The <head> tag contains metadata about the page, such as the title and description, as well as links to CSS and JavaScript files. The <body> tag contains the main content of the page, which is wrapped in a <div> element with the class container.
+
+* The ejs templating language is used to dynamically insert content into the template. The <%= syntax is used to evaluate an expression and output the result. For example, the line <title><%= locals.title %></title> sets the title of the page to the value of the title property of the locals object.
+
+* The include directive is used to include other templates into the main template. For example, the line <%- include('../partials/header.ejs') %> includes the header.ejs template into the <head> of the main template.
+
+* The body block is where you will insert the specific content of each page. For example, if you have a route for the /about page, you would create an about.ejs template that would be inserted into the body block of the main template.
