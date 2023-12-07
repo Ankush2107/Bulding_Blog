@@ -204,3 +204,39 @@ app.set('view engine', 'ejs');
     &copy; <%- new Date().getFullYear(); %> Built with Nodejs & MongoDB
 </footer>
 ```
+
+### styling the web page
+
+```
+:root {
+    --black: #1c1c1c;
+    --gray: #7e7e7e;
+    --gray-light: e4e4e4;
+    --red: #b30000;
+    --font-size-base: 1rem;
+    --font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+    --font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+    --font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+}
+```
+
+:root is a pseudo-class selector that represents the highest-level parent element, which is typically the <html> element. The :root pseudo-class is often used to define global CSS variables, also known as CSS custom properties.
+
+* Custom Properties (CSS Variables):
+
+--black, --gray, --gray-light, --red: These are CSS variables that store color values. Custom properties allow you to define values that can be reused throughout your stylesheet.
+
+* Font Size Variables:
+
+- --font-size-base: This is a base font size set to 1rem.
+--font-size-md, --font-size-lg, --font-size-xl: These are font size variables defined using the clamp() function. The clamp() function ensures that the font size is responsive and adapts to different viewports. The font size is calculated based on a minimum size, a fixed portion of the viewport width (vw), and a maximum size.
+
+- clamp() is a CSS function that helps set a value within a specific range. It takes three parameters: a minimum value, a preferred value, and a maximum value. The function ensures that the output value falls within the specified range.
+
+```
+clamp(minimum, preferred, maximum);
+```
+
+- minimum: The minimum value the property can take.
+- preferred: The preferred or ideal value for the property.
+- maximum: The maximum value the property can take.
