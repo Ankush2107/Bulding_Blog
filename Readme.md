@@ -228,10 +228,10 @@ app.set('view engine', 'ejs');
 
 * Font Size Variables:
 
-- --font-size-base: This is a base font size set to 1rem.
+1. --font-size-base: This is a base font size set to 1rem.
 --font-size-md, --font-size-lg, --font-size-xl: These are font size variables defined using the clamp() function. The clamp() function ensures that the font size is responsive and adapts to different viewports. The font size is calculated based on a minimum size, a fixed portion of the viewport width (vw), and a maximum size.
 
-- clamp() is a CSS function that helps set a value within a specific range. It takes three parameters: a minimum value, a preferred value, and a maximum value. The function ensures that the output value falls within the specified range.
+2. clamp() is a CSS function that helps set a value within a specific range. It takes three parameters: a minimum value, a preferred value, and a maximum value. The function ensures that the output value falls within the specified range.
 
 ```
 clamp(minimum, preferred, maximum);
