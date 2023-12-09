@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
         }
         let perPage = 6;
         let page = req.query.page || 1;
-        console.log(typeof page);
 
         const data = await Post.aggregate([ {$sort: {createdAt: -1}} ])
         .skip(perPage * page - perPage)
@@ -46,19 +45,43 @@ router.get('/contact', (req, res) => {
 
 router.get('/post/:id', async(req, res) => {
     try{
-        const locals = {
-            title: "Nodejs Blog",
-            description: "Simple blog created with NodeJs, Express & MongoDb." 
-        }
-
         let slug = req.params.id;
         const data = await Post.findById({ _id: slug });
+        const locals = {
+            title: data.title,
+            description: "Simple blog created with NodeJs, Express & MongoDb." 
+        }
         res.render('post', {locals, data});
     } catch(err) {
         console.log(err);
     }
 })
 
+
+router.post('/search', async (req, res) => {
+    try {
+        const locals = {
+            title: "Search",
+            description: "Simple blog created with NodeJs, Express & MongoDb."
+        }
+        let searchTerm = req.body.searchTerm;
+        const searchNoSpecialChar = searchTerm.replace(/[^a-zA-z0-9]/g, "");
+
+        const data = await Post.find({
+            $or: [
+                {title: {$regex: new RegExp(searchNoSpecialChar, 'i')}},
+                {body: {$regex: new RegExp(searchNoSpecialChar, 'i')}}
+            ]
+        });
+
+        res.render("search", {
+            data, 
+            locals
+        });
+    } catch(error) {
+        console.log(error);
+    }
+})
 
 // function insertPostData () {
 //   Post.insertMany([
