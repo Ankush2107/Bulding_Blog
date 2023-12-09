@@ -17,6 +17,6 @@ const postSchema = new mongoose.Schema({
         type: Date,
         dafault: Date.now
     }
-});
+},{timestamps: true});
 
 module.exports = mongoose.model('Post', postSchema);
