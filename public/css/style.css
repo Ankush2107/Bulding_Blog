@@ -267,7 +267,7 @@ img {
 }
 
 .article {
-    white-space: nowrap;
+    white-space: pre-wrap;
 }
 
 footer {
