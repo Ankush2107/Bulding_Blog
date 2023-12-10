@@ -45,8 +45,7 @@ router.get('/contact', (req, res) => {
 
 router.get('/post/:id', async(req, res) => {
     try{
-        let slug = req.params.id;
-        const data = await Post.findById({ _id: slug });
+        const data = await Post.findById({ _id: req.params.id });
         const locals = {
             title: data.title,
             description: "Simple blog created with NodeJs, Express & MongoDb." 
