@@ -118,12 +118,14 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
     try {
         const locals = {
             title: "Edit Post",
-            description: "Free nodejs user management system" 
+            description: "Free Nodejs user management system" 
         } 
         const data = await Post.findOne({ _id: req.params.id });
+
         res.render('admin/edit-post', {
             locals, data, layout: adminLayout
         })
+         
     } catch {
         console.log(error);
     }
@@ -168,11 +170,17 @@ router.post('/register', async (req, res) => {
 
 router.delete('/delete-post/:id', authMiddleware, async (req, res) => {
     try {
-        await Post.deleteOne( {_id: req.params.id} );
+        await Post.deleteOne( { _id: req.params.id } );
         res.redirect('/dashboard');
     } catch(error) {
         console.log(error);
     }
+})
+
+
+router.get('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/');
 })
 
 

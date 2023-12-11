@@ -166,12 +166,8 @@ img {
     padding: 10px;
 }
 
-.header_nav ul a:hover {
-    cursor: pointer;
-}
-
-.header_nav ul a:active {
-    color: var(--gray);
+.header_nav ul li a:active {
+    color: var(--gray-light);
 }
 
 /* Author part */
