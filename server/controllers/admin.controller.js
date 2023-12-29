@@ -1,31 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const Post = require('../models/Post');
-const User = require('../models/User');
+const Post = require('../models/Post.js');
+const User = require('../models/User.js');
 const adminLayout = '../views/layouts/admin';
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const jwtSecret = process.env.JWTSECRET;
 
-const authMiddleware = (req, res, next) => {
-    const token = req.cookies.token;
-
-    if(!token) {
-        return res.status(401).json({ message: 'Unauthorised' });
-    }
-
-    try {
-        const decoded = jwt.verify(token, jwtSecret);
-        req.userId = decoded.userId;
-        next();
-    } catch (error) {
-        return res.status(401).json({ message: 'Unauthorised' });
-    }
-}
-
-
-router.get('/admin', async (req, res) => {
+const GetAdmin = async (req, res) => {
     try {
         const locals = {
             title: "Admin",
@@ -35,10 +15,9 @@ router.get('/admin', async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-})
+}
 
-
-router.post('/admin', async (req, res) => {
+const PostAdmin = async (req, res) => {
     try {
         const {username, password} = req.body;
         const user = await User.findOne({ username });
@@ -59,10 +38,9 @@ router.post('/admin', async (req, res) => {
     } catch(error) {
         console.log(error);
     }
-})
+}
 
-
-router.get('/dashboard', authMiddleware, async (req, res) => {
+const Dashboard = async (req, res) => {
     try {
         const locals = {
             title: 'Dashboard',
@@ -76,10 +54,9 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-})
+}
 
-
-router.get('/add-post', authMiddleware, async (req, res) => {
+const GetAddPost = async (req, res) => {
     try {
         const locals = {
             title: 'Add Post',
@@ -93,10 +70,9 @@ router.get('/add-post', authMiddleware, async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-})
+}; 
 
-
-router.post('/add-post', authMiddleware, async (req, res) => {
+const AddPost = async (req, res) => {
     try {
         try {
             const newPost = new Post({
@@ -111,10 +87,9 @@ router.post('/add-post', authMiddleware, async (req, res) => {
     } catch {
         console.log(error);
     }
-})
+};
 
-
-router.get('/edit-post/:id', authMiddleware, async (req, res) => {
+const EditPost = async (req, res) => {
     try {
         const locals = {
             title: "Edit Post",
@@ -129,10 +104,9 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
     } catch {
         console.log(error);
     }
-})
+};
 
-
-router.put('/edit-post/:id', authMiddleware, async (req, res) => {
+const UpdateEditPost = async (req, res) => {
     try {
         await Post.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
@@ -144,9 +118,9 @@ router.put('/edit-post/:id', authMiddleware, async (req, res) => {
     } catch {
         console.log(error);
     }
-})
+};
 
-router.post('/register', async (req, res) => {
+const Register = async (req, res) => {
     try{
         const { username, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -164,24 +138,31 @@ router.post('/register', async (req, res) => {
     catch(error) {
         console.log(error);
     }
-})
+};
 
-
-
-router.delete('/delete-post/:id', authMiddleware, async (req, res) => {
+const DeletePost = async (req, res) => {
     try {
         await Post.deleteOne( { _id: req.params.id } );
         res.redirect('/dashboard');
     } catch(error) {
         console.log(error);
     }
-})
+};
 
-
-router.get('/logout', (req, res) => {
+const Logout =  async (req, res) => {
     res.clearCookie('token');
     res.redirect('/');
-})
+};
 
-
-module.exports = router;
+module.exports = {
+    GetAdmin,
+    PostAdmin,
+    Dashboard,
+    GetAddPost,
+    AddPost,
+    EditPost,
+    UpdateEditPost,
+    Register,
+    DeletePost,
+    Logout
+}

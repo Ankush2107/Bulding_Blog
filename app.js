@@ -11,6 +11,9 @@ const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo');
 const session = require('express-session');
 
+const adminRoute = require('./server/routes/admin.route.js');
+const mainRoute = require('./server/routes/main.route.js');
+
 const app = express();
 
 const PORT = 5000 || process.env.PORT;
@@ -42,8 +45,8 @@ app.set('view engine', 'ejs');
 
 app.locals.isActiveRoute = isActiveRoute;
 
-app.use('/', require('./server/routes/main'));
-app.use('/', require('./server/routes/admin'));
+app.use('/', mainRoute);
+app.use('/', adminRoute);
 
 
 app.listen(PORT, () => {
